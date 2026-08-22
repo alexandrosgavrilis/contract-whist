@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Contract Whist</title>
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+<div class="table-edge"></div>
+
+<!-- ============ SETUP ============ -->
+<section class="screen" id="screen-setup" hidden>
+  <div class="setup">
+    <h1 class="brand"><span>Contract</span> Whist</h1> 
+    <h6 class="attr">by Alexandros Gavrilis</h6>
+    <br>
+    <br>
+    <div class="setup-grid">
+      <fieldset class="panel">
+        <legend>Players, in clockwise order</legend>
+        <div class="stepper">
+          <button type="button" class="chip chip-ghost" id="players-minus" aria-label="One fewer player">&minus;</button>
+          <output class="stepper-value" id="players-count">4</output>
+          <button type="button" class="chip chip-ghost" id="players-plus" aria-label="One more player">+</button>
+        </div>
+        <ol class="name-list" id="name-list"></ol>
+        <p class="hint">Tap a seat to make that player the first dealer.</p>
+      </fieldset>
+
+      <fieldset class="panel">
+        <legend>Biggest hand</legend>
+        <div class="stepper">
+          <button type="button" class="chip chip-ghost" id="cards-minus" aria-label="Fewer cards">&minus;</button>
+          <output class="stepper-value" id="cards-count">10</output>
+          <button type="button" class="chip chip-ghost" id="cards-plus" aria-label="More cards">+</button>
+        </div>
+        <p class="hint" id="cards-hint"></p>
+        <div class="ladder-preview" id="ladder-preview"></div>
+      </fieldset>
+    </div>
+
+    <div class="setup-actions">
+      <button type="button" class="btn btn-primary" id="start-game">Deal the first hand</button>
+      <button type="button" class="btn btn-quiet" id="resume-game" hidden>Resume saved game</button>
+      <button type="button" class="btn btn-quiet" id="open-rules-setup">House rules</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ROUND ============ -->
+<section class="screen" id="screen-round" hidden>
+  <header class="rail">
+    <div class="rail-item"><span class="eyebrow">Hand</span><strong id="rail-round">1 / 20</strong></div>
+    <div class="ladder" id="ladder" aria-hidden="true"></div>
+    <div class="rail-item rail-right"><span class="eyebrow">Dealer</span><strong id="rail-dealer">—</strong></div>
+    <button type="button" class="btn btn-quiet btn-small" id="open-sheet">Scoresheet</button>
+    <button type="button" class="btn btn-quiet btn-small" id="open-rules">Rules</button>
+    <button type="button" class="btn btn-quiet btn-small" id="abandon-game">New game</button>
+  </header>
+
+  <main class="baize">
+    <div class="hero">
+      <div class="hero-card" id="hero-card"></div>
+      <p class="hero-meta" id="hero-meta"></p>
+    </div>
+
+    <div class="board">
+      <table class="seats">
+        <thead>
+          <tr>
+            <th scope="col" class="col-name">Player</th>
+            <th scope="col">Called</th>
+            <th scope="col">Made</th>
+            <th scope="col" class="col-score">Score</th>
+          </tr>
+        </thead>
+        <tbody id="seats-body"></tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer class="prompt">
+    <p class="prompt-text" id="prompt-text"></p>
+    <div class="keypad" id="keypad"></div>
+    <div class="controls">
+      <button type="button" class="btn btn-quiet" id="btn-back">Back</button>
+      <button type="button" class="btn btn-primary" id="btn-next"></button>
+    </div>
+  </footer>
+</section>
+
+<!-- ============ FINAL ============ -->
+<section class="screen" id="screen-final" hidden>
+  <div class="final">
+    <h1 class="brand"><span>Final</span> Score</h1>
+    <ol class="podium" id="podium"></ol>
+    <p class="verdict" id="verdict"></p>
+    <div class="setup-actions">
+      <button type="button" class="btn btn-primary" id="btn-tiebreak" hidden>Draw for it</button>
+      <button type="button" class="btn btn-quiet" id="btn-sheet-final">Scoresheet</button>
+      <button type="button" class="btn btn-quiet" id="btn-edit-last">Reopen last hand</button>
+      <button type="button" class="btn btn-quiet" id="btn-new-game">New game</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TIE-BREAK ============ -->
+<section class="screen" id="screen-tiebreak" hidden>
+  <div class="final">
+    <h1 class="brand"><span>Cut</span> for it</h1>
+    <p class="prompt-text" id="tb-prompt"></p>
+
+    <div class="tb-cards" id="tb-cards"></div>
+
+    <div class="keypad keypad-wide" id="tb-keypad"></div>
+    <ol class="tb-guesses" id="tb-guesses"></ol>
+
+    <p class="verdict" id="tb-verdict"></p>
+    <div class="setup-actions">
+      <button type="button" class="btn btn-primary" id="tb-action"></button>
+      <button type="button" class="btn btn-quiet" id="tb-back">Back to scores</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SCORESHEET OVERLAY ============ -->
+<div class="overlay" id="overlay" hidden>
+  <div class="overlay-panel" role="dialog" aria-label="Scoresheet">
+    <button type="button" class="overlay-close" id="close-sheet" aria-label="Close scoresheet">&times;</button>
+    <h2 class="overlay-title">Scoresheet</h2>
+    <div class="sheet-scroll" id="sheet"></div>
+  </div>
+</div>
+
+<div class="overlay" id="rules-overlay" hidden>
+  <div class="overlay-panel" role="dialog" aria-label="House rules">
+    <button type="button" class="overlay-close" id="close-rules" aria-label="Close house rules">&times;</button>
+    <h2 class="overlay-title">House rules</h2>
+    <p class="rules-warning" id="rules-warning" hidden></p>
+    <div class="sheet-scroll"><ul class="rules-list" id="rules-list"></ul></div>
+    <div class="rules-foot">
+      <button type="button" class="btn btn-quiet btn-small" id="restore-rules">Restore defaults</button>
+      <button type="button" class="btn btn-primary btn-small" id="done-rules">Done</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/rules.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/cards.js"></script>
+<script src="js/ui.js"></script>
+</body>
+</html>

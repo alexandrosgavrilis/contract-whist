@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 336" width="240" height="336">
+  <defs>
+    <symbol id="pip" viewBox="0 0 100 100"><g fill="#b3272d"><path d="M50 90C22 66 8 48 8 32 8 17 19 8 31 8c9 0 16 5 19 12 3-7 10-12 19-12 12 0 23 9 23 24 0 16-14 34-42 58z"/></g></symbol>
+  </defs>
+  <rect x="1.5" y="1.5" width="237" height="333" rx="16" fill="#f6f2e7" stroke="#cfc7b4" stroke-width="3"/>
+  <rect x="10" y="10" width="220" height="316" rx="10" fill="none" stroke="#e3dccb" stroke-width="1.5"/>
+
+  <!-- centre pip -->
+  <use href="#pip" x="55" y="98" width="130" height="130"/>
+
+  <!-- top-left index -->
+  <text x="26" y="52" font-family="Georgia,'DejaVu Serif',serif" font-size="46" font-weight="700" fill="#b3272d" text-anchor="middle">A</text>
+  <use href="#pip" x="14" y="60" width="24" height="24"/>
+
+  <!-- bottom-right index -->
+  <g transform="rotate(180 120 168)">
+    <text x="26" y="52" font-family="Georgia,'DejaVu Serif',serif" font-size="46" font-weight="700" fill="#b3272d" text-anchor="middle">A</text>
+    <use href="#pip" x="14" y="60" width="24" height="24"/>
+  </g>
+</svg>

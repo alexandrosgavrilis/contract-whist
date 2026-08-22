@@ -1,0 +1,52 @@
+/* ============================================================
+   TOKENS — every colour and size in the app comes from here.
+   Change a value, reload, done.
+   ============================================================ */
+
+:root {
+  /* --- Baize ------------------------------------------------ */
+  --felt:        #14563a;   /* main table green   */
+  --felt-deep:   #0c3826;   /* vignette / edges   */
+  --felt-lift:   #1a6544;   /* raised panels      */
+  --stitch:      #d8b25e;   /* gold table edging  */
+
+  /* --- Ink -------------------------------------------------- */
+  --ivory:       #f4efe2;
+  --ivory-dim:   rgba(244, 239, 226, .62);
+  --ivory-faint: rgba(244, 239, 226, .16);
+  --gold:        #d8b25e;
+  --gold-dim:    rgba(216, 178, 94, .45);
+  --pip-red:     #b3272d;
+  --pip-black:   #171717;
+
+  /* --- Feedback --------------------------------------------- */
+  --good:        #7fd1a0;
+  --warn:        #e8a33d;
+  --bad:         #e2726e;
+
+  /* --- Type ------------------------------------------------- */
+  --font-display: "Bodoni MT", "Didot", "Playfair Display",
+                  "DejaVu Serif", Georgia, "Times New Roman", serif;
+  --font-ui:      "Inter", "Fira Sans", "Cantarell", "Segoe UI",
+                  system-ui, -apple-system, "Helvetica Neue", sans-serif;
+
+  --fs-brand:  clamp(2.4rem, 7vw, 5rem);
+  --fs-prompt: clamp(1.5rem, 4.2vw, 3.1rem);
+  --fs-score:  clamp(1.9rem, 3.6vw, 3.2rem);
+  --fs-cell:   clamp(1.2rem, 2.4vw, 2rem);
+  --fs-chip:   clamp(1.3rem, 2.6vw, 2.1rem);
+  --fs-eyebrow: .72rem;
+
+  /* --- Metrics ---------------------------------------------- */
+  --chip-size: clamp(3.1rem, 7vw, 4.6rem);
+  --radius:    14px;
+  --radius-sm: 9px;
+  --gap:       clamp(.8rem, 1.8vw, 1.6rem);
+  --card-width: clamp(9rem, 17vw, 15rem);
+
+  --shadow-card: 0 18px 34px rgba(0, 0, 0, .42), 0 2px 5px rgba(0, 0, 0, .3);
+  --shadow-lift: 0 6px 18px rgba(0, 0, 0, .3);
+
+  /* Tilt of the trump card on the table. Set to 0deg for square-on. */
+  --card-tilt: -3deg;
+}

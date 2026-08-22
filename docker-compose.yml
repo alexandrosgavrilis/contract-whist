@@ -1,0 +1,15 @@
+# The whole app is static files. nginx just serves them.
+#
+# ./site is bind-mounted, so editing a colour in css/tokens.css or dropping
+# a new ace-hearts.svg into site/assets/cards/ shows up on the next refresh.
+# No rebuild, no restart.
+
+services:
+  whist:
+    image: nginx:alpine
+    container_name: contract-whist
+    ports:
+      - "8088:80"
+    volumes:
+      - ./site:/usr/share/nginx/html:ro
+    restart: unless-stopped
