@@ -39,7 +39,23 @@ const Engine = (() => {
     for (let i = 1; i <= n; i++) order.push((dealer + i) % n);
     return order;
   }
+  /* Who leads the first trick: the highest call. On a tie, whoever sits
+     nearest the dealer going clockwise -- which is the calling order, so
+     the earliest caller among those tied wins it.
+     With no calls at all (Misère), the seat left of the dealer leads. */
+  function leadSeat(state, roundIndex) {
+    const r = state.rounds[roundIndex];
+    const seq = callOrder(state, roundIndex);      // dealer+1 ... dealer
 
+    if (!r.calls.some((v) => v !== null)) return seq[0];
+
+    let best = null;
+    for (const seat of seq) {
+      if (r.calls[seat] === null) continue;
+      if (best === null || r.calls[seat] > r.calls[best]) best = seat;
+    }
+    return best;
+  }
   /* Points for one seat in one round. */
   function scoreSeat(round, seat) {
     const made = round.made[seat];
