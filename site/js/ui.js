@@ -80,7 +80,13 @@
   function roundIsMisereNoCalls(r) {
     return r.type === 'misere' && !CONFIG.misereHasCalls;
   }
-
+  /* The seat leading the first trick, or null if it isn't settled yet. */
+  function leadSeatNow() {
+    const r = round();
+    if (S.phase !== 'play' && S.phase !== 'made') return null;
+    if (!roundIsMisereNoCalls(r) && !Engine.allFilled(r.calls)) return null;
+    return Engine.leadSeat(S, S.roundIndex);
+  }
   function trumpLabel(r) {
     if (r.type === 'suit') return CONFIG.labels[r.suit];
     return CONFIG.labels[r.type];
