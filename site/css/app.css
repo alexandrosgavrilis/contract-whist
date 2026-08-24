@@ -720,3 +720,19 @@ tr.seat.is-clickable:hover { background: rgba(255, 255, 255, .05); }
   tr { break-inside: avoid; }
   @page { margin: 14mm; }
 }
+
+/* Who leads the first trick */
+.lead-mark {
+  display: inline-block;
+  margin-left: .45em;
+  padding: .18em .5em;
+  font-family: var(--font-ui);
+  font-size: .52em;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  vertical-align: middle;
+  border-radius: 4px;
+  background: var(--gold);
+  color: #26200f;
+}
