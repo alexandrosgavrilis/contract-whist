@@ -215,7 +215,7 @@
       const madeClass = (made !== null && !roundIsMisereNoCalls(r) && made === call) ? 'hit' : '';
 
       tr.innerHTML = `
-        <td class="cell-name">${escapeHtml(S.players[seat])}${seat === dealer() ? '<span class="dealer-mark">D</span>' : ''}</td>
+        <td class="cell-name">${escapeHtml(S.players[seat])}${seat === dealer() ? '<span class="dealer-mark">D</span>' : ''}${seat === leader ? '<span class="lead-mark">Leads</span>' : ''}</td>
         <td class="cell-call">${callCell}</td>
         <td class="cell-made ${madeClass}">${made === null ? '<span class="cell-empty">·</span>' : made}</td>
         <td class="cell-score">${tot[seat]}${delta === null ? '' :
