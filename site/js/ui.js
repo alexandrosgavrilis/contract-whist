@@ -235,10 +235,12 @@
     if (S.phase === 'call') {
       const called = Engine.sum(r.calls.filter((v) => v !== null));
       const remaining = r.calls.filter((v) => v === null).length;
+      const trickWord = called === 1 ? 'trick' : 'tricks';
+      const playerWord = remaining === 1 ? 'player' : 'players';
       text.innerHTML = S.active === null
-        ? `All calls are in<span class="tally">${called} called for ${r.cards} tricks</span>`
+        ? `All calls are in<span class="tally">${called} ${trickWord} called for a hand of ${r.cards}</span>`
         : `<b>${escapeHtml(S.players[S.active])}</b> calls` +
-          `<span class="tally">${called} called so far · ${remaining} still to call</span>`;
+          `<span class="tally">${called} ${trickWord} called · ${remaining} ${playerWord} still to call</span>`;
       renderKeypad(pad, r.cards, r.calls[S.active]);
       next.textContent = 'Calls are in';
       next.disabled = !Engine.allFilled(r.calls);
