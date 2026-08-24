@@ -125,7 +125,7 @@ const Engine = (() => {
   }
 
   return {
-    buildLadder, dealerSeat, callOrder,
+    buildLadder, dealerSeat, callOrder, leadSeat,
     scoreSeat, totals, leaders,
     resolveTiebreak, sum, allFilled,
   };
