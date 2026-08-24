@@ -664,3 +664,59 @@ tr.seat.is-clickable:hover { background: rgba(255, 255, 255, .05); }
   padding-top: 1rem;
   border-top: 1px solid var(--ivory-faint);
 }
+/* ---------- Scoresheet header ---------- */
+
+.overlay-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0 2rem 1rem 0;   /* room for the close button */
+}
+.overlay-head .overlay-title { margin: 0; }
+
+/* ---------- Printing ---------- */
+
+@media print {
+  /* only the scoresheet goes on paper */
+  body > *:not(#overlay) { display: none !important; }
+  #overlay[hidden] { display: none !important; }
+
+  #overlay:not([hidden]) {
+    position: static;
+    display: block;
+    padding: 0;
+    background: none;
+  }
+
+  body { background: none !important; color: #000 !important; }
+
+  .overlay-panel {
+    width: auto;
+    max-height: none;
+    overflow: visible;
+    padding: 0;
+    border: none;
+    background: #fff !important;
+    color: #000 !important;
+  }
+  .sheet-scroll { overflow: visible; }
+
+  .overlay-close, #print-sheet { display: none !important; }
+  .overlay-head { margin-right: 0; }
+  .overlay-title { color: #000 !important; font-size: 1.3rem; }
+
+  .sheet { width: 100%; }
+  .sheet th, .sheet td {
+    border-color: #999 !important;
+    color: #000 !important;
+    background: none !important;
+  }
+  .sheet thead th, .sheet .row-head,
+  .sheet .cell-pair, .sheet .cell-pair b { color: #000 !important; }
+  .sheet tfoot td { border-top-color: #333 !important; }
+  .hint { color: #444 !important; }
+
+  tr { break-inside: avoid; }
+  @page { margin: 14mm; }
+}
