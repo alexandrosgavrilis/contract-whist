@@ -194,6 +194,7 @@
 
     /* seats */
     const madeAllIn = Engine.allFilled(r.made);
+    const leader = leadSeatNow();
     const body = $('seats-body');
     body.innerHTML = '';
     seq.forEach((seat) => {
