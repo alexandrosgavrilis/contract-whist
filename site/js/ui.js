@@ -705,6 +705,7 @@
   $('open-sheet').onclick = renderSheet;
   $('btn-sheet-final').onclick = renderSheet;
   $('close-sheet').onclick = () => { $('overlay').hidden = true; };
+  $('print-sheet').onclick = () => window.print();
   $('overlay').addEventListener('click', (e) => {
     if (e.target === $('overlay')) $('overlay').hidden = true;
   });
